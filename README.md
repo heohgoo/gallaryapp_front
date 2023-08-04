@@ -1,4 +1,4 @@
-# frontend
+Vue -version `3.3.4`
 
 ## Project setup
 ```
