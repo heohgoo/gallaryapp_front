@@ -1,4 +1,4 @@
-Vue -version `3.3.4`
+**Vue version** `3.3.4` 
 
 ## Project setup
 ```
