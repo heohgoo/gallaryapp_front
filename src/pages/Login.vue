@@ -8,6 +8,7 @@
           class="form-control"
           id="floatingInput"
           placeholder="name@example.com"
+          @keyup.enter="submit()"
           v-model="state.form.email"
         />
         <label for="floatingInput">Email address</label>
@@ -18,6 +19,7 @@
           class="form-control"
           id="floatingPassword"
           placeholder="Password"
+          @keyup.enter="submit()"
           v-model="state.form.password"
         />
         <label for="floatingPassword">Password</label>
@@ -29,6 +31,7 @@
           type="checkbox"
           value="remember-me"
           id="flexCheckDefault"
+          @keyup.enter="submit()"
         />
         <label class="form-check-label" for="flexCheckDefault">
           Remember me
@@ -57,8 +60,6 @@ export default {
     const submit = () => {
       axios.post("/api/account/login", state.form).then((res) => {
         store.commit('setAccount', res.data);
-        console.log(res.data);
-        sessionStorage.setItem("id", res.data);
         router.push({ path: "/" });
         window.alert("로그인 완료");
       }).catch(() => {
