@@ -5,8 +5,8 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">사이트맵</h4>
-              <ul class="list-unstyled">
+              <h3 class="text-white">사이트맵</h3>
+              <ul class="list-styled">
                 <li>
                   <router-link class="text-white" to="/">메인 화면</router-link>
                 </li>
@@ -16,6 +16,9 @@
                 <li>
                   <router-link class="text-white" to="/login" v-if="!$store.state.account.id">로그인</router-link>
                   <a class="text-white" @click="logout()" v-else>로그아웃</a>
+                </li>
+                <li>
+                  <router-link class="text-white" to="/signup" v-if="!$store.state.account.id">회원가입</router-link>
                 </li>
               </ul>
             </div>

@@ -9,7 +9,7 @@
             <i class="fa fa-trash" @click="remove(i.id)"></i>
           </li>
           </ul>
-          <router-link to="/order" class="btn btn-primary">구입하기</router-link>
+          <router-link to="/order" class="btn btn-primary" v-if="state.items.length > 0">구입하기</router-link>
         </div>
     </div>
   </template>
@@ -18,6 +18,7 @@
 import { reactive } from 'vue';
 import axios from 'axios';
 import lib from '@/scripts/lib'
+import router from '@/scripts/router';
 
   
 export default {
@@ -27,11 +28,15 @@ export default {
     })
 
     const load = () => {
-    axios.get("/api/cart/items").then(({ data }) => {
+        axios.get("/api/cart/items").then(({ data }) => {
         console.log(data);
-        state.items = data;
-      })
-    };
+          state.items = data;
+          if (state.items.length == 0) {
+            window.alert("장바구니에 담은 품목이 없습니다.");
+            router.push("/");
+          }
+      });
+      }
 
     const remove = (itemId) => {
       axios.delete(`/api/cart/items/${itemId}`).then(() => {
@@ -83,7 +88,9 @@ export default {
   width: 250px;
   display: block;
   margin: 0 auto;
+  margin-top: 20px;
   padding: 30px 50px;
   font-size: 20px;
 }
+
 </style>

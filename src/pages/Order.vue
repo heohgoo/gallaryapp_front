@@ -105,6 +105,7 @@
 import { computed, reactive } from "vue";
 import axios from "axios";
 import lib from "@/scripts/lib";
+import router from '@/scripts/router';
 
 export default {
   setup() {
@@ -130,7 +131,8 @@ export default {
           const args = JSON.parse(JSON.stringify(state.form));
           args.items = JSON.stringify(state.items);
           axios.post("/api/orders", args).then(() => {
-            console.log('success');
+            alert('주문이 완료되었습니다.')
+            router.push({ path: "/orders" })
           })
         };
 
