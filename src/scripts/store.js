@@ -6,13 +6,19 @@ const store = createStore({
         return {
             account: {
                 id: 0
-            }
+            },
+
+            page: true
         }
     },
 
     mutations: {
         setAccount(state, payload) {
             state.account.id = payload;
+        },
+
+        setPage(state) {
+            state.page = false;
         }
     }
 })

@@ -1,6 +1,5 @@
 <template>
-    <footer class="text-body-secondary py-5">
-    </footer>
+    <footer></footer>
 </template>
 
 <script>
@@ -9,5 +8,6 @@ export default {
 }
 </script>
 
-<style lang="">   
+<style scoped>
+
 </style>
