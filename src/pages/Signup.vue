@@ -1,6 +1,6 @@
 <template>
     <main class="form-signin w-100 m-auto">
-        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+        <h1 class="h3 mb-3 fw-normal">회원가입</h1>
   
         <div class="form-floating">
           <input
@@ -26,12 +26,12 @@
         </div>
         <div class="form-floating">
           <input
-            type="passwordc"
+            type="password"
             class="form-control"
             id="floatingPassword"
             placeholder="Password Confirmation"
             @keyup.enter="submit()"
-            v-model="state.form.password"
+            v-model="state.form.passwordconfirm"
           />
           <label for="floatingPassword">Password Confirmation</label>
         </div>
@@ -43,7 +43,6 @@
   <script>
   import axios from 'axios';
   import { reactive } from 'vue';
-  import store from '@/scripts/store';
   import router from '@/scripts/router';
   
   export default {
@@ -51,22 +50,28 @@
       const state = reactive({
         form: {
           email: "",
-          password: ""
+          password: "",
+          passwordconfirm: "",
         }
       })
-  
+
       const submit = () => {
-        axios.post("/api/account/login", state.form).then((res) => {
-          store.commit('setAccount', res.data);
-          router.push({ path: "/" });
-          window.alert("로그인 완료");
+        if (state.form.password == state.form.passwordconfirm) {
+        axios.post("/api/account/signup", state.form).then(() => {
+          router.push({ path: "/home" });
+          window.alert("회원가입 완료");
         }).catch(() => {
-          window.alert("로그인 정보가 존재하지 않습니다.");
+          window.alert("이미 가입한 아이디입니다.");
         })
+        }
+
+        else {
+          window.alert('비밀번호를 다시 한 번 확인해주세요.');
+        }
       }
       return { state, submit };
-    }
-  };
+  },
+}
   </script>
   
   <style>
