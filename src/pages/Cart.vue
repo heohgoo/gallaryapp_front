@@ -33,7 +33,7 @@ export default {
           state.items = data;
           if (state.items.length == 0) {
             window.alert("장바구니에 담은 품목이 없습니다.");
-            router.push("/");
+            router.push("/home");
           }
       });
       }
