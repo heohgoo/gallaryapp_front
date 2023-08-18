@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-4 offset-md-1 py-4">
-              <h3 class="text-white">사이트맵</h3>
+              <h3 class="text-white" style="margin: 0 auto">사이트맵</h3>
               <ul class="list-styled">
                 <li>
                   <router-link class="text-white" to="/home">메인 화면</router-link>
@@ -19,6 +19,12 @@
                 </li>
                 <li>
                   <router-link class="text-white" to="/signup" v-if="!$store.state.account.id">회원가입</router-link>
+                </li>
+                <li>
+                  <router-link class="text-white" to="/register">사업자 등록</router-link>
+                </li>
+                <li>
+                  <router-link class="text-white" to="/sell">물품 판매</router-link>
                 </li>
               </ul>
             </div>

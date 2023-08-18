@@ -4,6 +4,8 @@ import Cart from '@/pages/Cart';
 import Order from '@/pages/Order';
 import Orders from '@/pages/Orders';
 import Signup from '@/pages/Signup';
+import Register from '@/pages/Register';
+import Sell from '@/pages/Sell';
 import { createRouter, createWebHistory } from 'vue-router/dist/vue-router';
 
 const routes = [
@@ -31,6 +33,14 @@ const routes = [
         path: '/signup',
         component: Signup,
     },
+    {
+        path: '/register',
+        component: Register
+    },
+    {
+        path: '/sell',
+        component: Sell
+    }
     
 ]
 

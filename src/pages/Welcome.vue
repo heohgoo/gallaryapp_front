@@ -22,7 +22,7 @@
             class="btn btn-primary"
             @click="move()"
             style="margin-top: 5%; padding: 10px 30px"
-            >홈으로 이동
+            >메인 화면으로 이동
           </button>
         </p>
       </main>
