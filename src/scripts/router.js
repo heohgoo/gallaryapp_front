@@ -6,9 +6,14 @@ import Orders from '@/pages/Orders';
 import Signup from '@/pages/Signup';
 import Register from '@/pages/Register';
 import Sell from '@/pages/Sell';
+import Welcome from '@/pages/Welcome'
 import { createRouter, createWebHistory } from 'vue-router/dist/vue-router';
 
 const routes = [
+    {
+        path: '/',
+        component: Welcome,
+    },
     {
         path: '/home',
         component: Home,

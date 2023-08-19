@@ -1,14 +1,13 @@
 <template>
-  <Header v-if="!page" />
-  <RouterView v-if="!page" />
-  <Footer v-if="!page" />
-  <Welcome v-if="page" />
+  <Header/>
+  <RouterView />
+  <Footer />
 </template>
 
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Welcome from "./pages/Welcome";
+// import Welcome from "./pages/Welcome";
 import { useRoute } from "vue-router";
 import { computed, watch } from "vue";
 import axios from "axios";
@@ -19,7 +18,7 @@ export default {
   components: {
     Header,
     Footer,
-    Welcome,
+    // Welcome,
   },
 
   setup() {
@@ -118,4 +117,5 @@ export default {
 /* .bd-mode-toggle {
   z-index: 1500;
 } */
+
 </style>
