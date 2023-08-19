@@ -3,7 +3,7 @@
         <span class="painting" :style="{backgroundImage: `url(${item.imgPath})`}"/>
         <div class="card-body">
         <p class="card-text">
-            <span>{{ item.name }} &nbsp;</span>
+            <span style="font-family: 'Black Han Sans', sans-serif;">{{ item.name }} &nbsp;</span>
             <span class="discount badge bg-danger">
                     {{ item.discountPer }}% 할인
             </span>
