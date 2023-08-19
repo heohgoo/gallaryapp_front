@@ -1,6 +1,8 @@
 <template>
   <Header/>
+  <transition name="fade">
   <RouterView />
+  </transition>
   <Footer />
 </template>
 
@@ -118,4 +120,31 @@ export default {
   z-index: 1500;
 } */
 
+/* 입장 애니메이션 */
+/* 시작 스타일 */
+.fade-enter-from {
+  opacity: 0;
+}
+/* transition */
+.fade-enter-active {
+  transition: all 0.3s;
+}
+/* 끝 스타일 */
+.fade-enter-to {
+  opacity: 1;
+}
+
+/* 퇴장 애니메이션 */
+/* 시작 스타일 */
+.fade-leave-from {
+  opacity: 1;
+}
+/* transition */
+.fade-leave-active {
+  transition: all 0.3s;
+}
+/* 끝 스타일 */
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
