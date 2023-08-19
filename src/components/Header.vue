@@ -1,14 +1,15 @@
 <template>
   <!-- <header data-bs-theme="dark"> -->
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
+      <div class="collapse bg-dark" id="navbarHeader" style="font-family: 'Orbit', sans-serif;">
         <div class="container">
           <div class="row">
             <div class="col-sm-4 offset-md-1 py-4">
               <h3 class="text-white" style="margin: 0 auto">사이트맵</h3>
               <ul class="list-styled">
                 <li>
-                  <router-link class="text-white" to="/home">메인 화면</router-link>
+                  <router-link class="text-white" to="/home">
+                    메인 화면</router-link>
                 </li>
                 <li v-if="$store.state.account.id">
                   <router-link class="text-white" to="/orders">주문 내역</router-link>
