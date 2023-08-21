@@ -1,18 +1,21 @@
 <template>
   <div class="cart">
     <!-- Modal -->
+    <transition name="fade">
     <div id="modalWrap" v-if="state.isModal">
       <div id="modalContent">
         <div id="modalBody">
           <span id="closeBtn" @click="modalclose()">&times;</span>
-          <p>modal-popup 입니다.</p>
+          <p style="font-size: 20px;">{{ state.itemName }}</p>
+          <img :src="state.itemPath" style="width: 700px; height: 700px;"/>
         </div>
       </div>
     </div>
+    </transition>
     <div class="container" style="font-family: 'Diphylleia', serif">
       <ul>
         <li v-for="(i, idx) in state.items" :key="idx">
-          <img :src="i.imgPath" @click="modalopen()" />
+          <img :src="i.imgPath" @click="modalopen(i.name, i.imgPath)" />
           <span class="name">작품명 : {{ i.name }}</span>
           <span class="price"
             >할인 적용가 : ${{
@@ -43,6 +46,8 @@ export default {
     const state = reactive({
       items: [],
       isModal: false,
+      itemName: '',
+      itemPath: '',
     });
 
     const load = () => {
@@ -62,8 +67,10 @@ export default {
       });
     };
 
-    const modalopen = () => {
+    const modalopen = (itemName, itemPath) => {
       state.isModal = true;
+      state.itemName = itemName;
+      state.itemPath = itemPath;
     };
 
     const modalclose = () => {
@@ -119,6 +126,18 @@ export default {
   font-size: 20px;
 }
 
+.fade-enter-from, .fade-leave-to {
+  transform: scale(0.2);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.3s;
+}
+
+.fade-enter-to, .fade-leave-from {
+  transform: scale(1);
+}
+
 
 #modalWrap {
   position: fixed; /* Stay in place */
@@ -131,6 +150,7 @@ export default {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   font-family: 'Diphylleia', serif;
+  transition: all 0.3s;
 }
 
 #modalBody {
@@ -141,6 +161,7 @@ export default {
   border: 1px solid #777;
   border-radius: 10px;
   background-color: #fff;
+  text-align: center;
 }
 
 #closeBtn {
