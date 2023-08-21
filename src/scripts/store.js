@@ -19,7 +19,7 @@ const store = createStore({
 
         setPage(state) {
             state.page = false;
-        }
+        },
     }
 })
 

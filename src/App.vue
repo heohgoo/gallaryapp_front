@@ -40,6 +40,7 @@ export default {
     watch(route, () => {
       check();
     });
+    
 
     return { page };
   },

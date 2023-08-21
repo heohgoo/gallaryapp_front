@@ -1,5 +1,5 @@
 <template>
-  <div class="order">
+  <div class="order" style="font-family: 'Diphylleia', serif;">
     <div class="container">
       <main>
         <div class="py-5 text-center">
@@ -48,7 +48,6 @@
                   />
                 </div>
               </div>
-              <hr class="my-4" />
               <hr class="my-4" />
               <h4 class="mb-3">결제 수단</h4>
               <div class="my-3">

@@ -1,6 +1,6 @@
 <template>
-    <main class="form-signin w-100 m-auto">
-        <h1 class="h3 mb-3 fw-normal">회원가입</h1>
+    <main class="form-signin w-100 m-auto" style="font-family: 'Diphylleia'">
+        <h1 class="h3 mb-3 fw-normal" style="margin-top: 50px;">회원가입</h1>
   
         <div class="form-floating">
           <input
