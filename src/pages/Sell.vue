@@ -15,7 +15,7 @@
             </h4>
                 <div>
                     <img :src="state.imgurl" style="width: 300px; height: 400px; 
-                    display:block; margin: 0 auto; margin-top: 30px;"/>
+                    display:block; margin: 0 auto; margin-top: 30px;" v-if="state.imgurl != ''"/>
                 </div>
 
           </div>
@@ -50,7 +50,6 @@
                     class="form-control"
                     id="cc-name"
                   />
-                  <div class="invalid-feedback">Name on card is required</div>
                 </div>
                 <div class="col-md-6">
                   <label for="cc-name" class="form-label">판매 가격</label
@@ -59,7 +58,14 @@
                     class="form-control"
                     id="cc-name"
                   />
-                  <div class="invalid-feedback">Name on card is required</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="cc-name" class="form-label">할인율</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    id="cc-name"
+                  />
                 </div>
               </div>
               <hr class="my-4" />
