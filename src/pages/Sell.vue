@@ -14,8 +14,8 @@
               </span>
             </h4>
                 <div>
-                    <img :src="state.imgurl" style="width: 300px; height: 400px; 
-                    display:block; margin: 0 auto; margin-top: 30px;" v-if="state.imgurl != ''"/>
+                    <img :src="state.form.imgPath" style="width: 300px; height: 400px; 
+                    display:block; margin: 0 auto; margin-top: 30px;" v-if="state.form.imgPath != ''"/>
                 </div>
 
           </div>
@@ -49,6 +49,7 @@
                     type="text"
                     class="form-control"
                     id="cc-name"
+                    v-model="state.form.name"
                   />
                 </div>
                 <div class="col-md-6">
@@ -56,7 +57,8 @@
                   ><input
                     type="text"
                     class="form-control"
-                    id="cc-name"
+                    id="cc-price"
+                    v-model="state.form.price"
                   />
                 </div>
                 <div class="col-md-6">
@@ -64,7 +66,8 @@
                   ><input
                     type="text"
                     class="form-control"
-                    id="cc-name"
+                    id="cc-discountper"
+                    v-model="state.form.discountPer"
                   />
                 </div>
               </div>
@@ -75,7 +78,7 @@
               <input style="margin-top: 20px;" @change="upload" accept="image/*"
               type="file" id="file"/>
             <button class="w-100 btn btn-primary btn-lg" style="margin-top: 40px;" 
-            @click="upload()">
+            @click="submit()">
                 판매하기
             </button>
             </div>
@@ -89,23 +92,38 @@
 
 <script>
 import { reactive } from 'vue'
+import axios from 'axios';
+import router from '@/scripts/router';
 export default {
     setup() {
         const state = reactive({
-            imgurl: '',
+          form: {
+            name: '',
+            imgPath: '',
+            price: 0,
+            discountPer: 0
+          }
         });
-
 
         const upload = (e) => {
             let a = e.target.files;
             console.log(a[0])
             let url = URL.createObjectURL(a[0])
             console.log(url)
-            state.imgurl = url;
+            state.form.imgPath = url;
+        }
+
+        const submit = () => {
+          axios.post("/api/sell", state.form).then((res) => {
+            console.log(res);
+            router.push({ path: "/home" });
+            window.alert("판매 완료");
+          }).catch(() =>
+            window.alert('판매 정보가 불확실합니다.'));
         }
 
 
-        return { state, upload };
+        return { state, upload, submit };
     }
     
 }
