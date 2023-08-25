@@ -1,6 +1,18 @@
 <template>
+    <transition name="fade">
+    <div id="modalWrap" v-if="state.isModal">
+      <div id="modalContent">
+        <div id="modalBody">
+          <span id="closeBtn" @click="modalclose()">&times;</span>
+          <img :src="item.imgPath" style="width: 500px; height: 500px; border: 2px dotted black; border-radius: 5px;"/>
+          <p style="font-size: 20px; font-weight: bold; margin-top: 20px;">{{ item.name }}</p>
+          <p style="font-size: 15px; padding-bottom: 30px;">${{ lib.getNumberFormatted(item.price) }} </p>
+        </div>
+      </div>
+    </div>
+    </transition>
     <div class="card shadow-sm">
-        <span class="painting" :style="{backgroundImage: `url(${item.imgPath})`}"/>
+        <span class="painting" :style="{backgroundImage: `url(${item.imgPath})`}" @click="modalopen()"/>
         <div class="card-body">
         <p class="card-text">
             <span style="font-family: 'Black Han Sans', sans-serif;">{{ item.name }} &nbsp;</span>
@@ -29,27 +41,41 @@
 <script>
 import lib from "@/scripts/lib";
 import axios from 'axios';
+import { reactive } from 'vue';
 
 export default {
     name: "Card",
 
     props:{
-        item: Object
+        item: Object,
     },
 
     setup() {
+        const state = reactive({
+            isModal: false,
+        })
+
         const addToCart = (itemId) => {
             axios.post(`/api/cart/items/${itemId}`).then(() => {
-                console.log('success')
+                console.log('success');
             })
         }
-        return { lib, addToCart }
+
+        const modalopen = () => {
+            state.isModal = true;
+        }
+
+        const modalclose = () => {
+            state.isModal = false;
+        }
+
+        return { state, lib, addToCart, modalclose, modalopen }
         // lib 라이브러리 사용
     }
 }
 </script>
 
-<style scoped>
+<style>
 .card .painting {
     display:inline-block;
     width: 100%;
@@ -61,5 +87,52 @@ export default {
 .card .card-body .price {
     text-decoration: line-through;
     margin-left: 0 auto;
+}
+
+.fade-enter-from, .fade-leave-to {
+  transform: scale(0.2);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.3s;
+}
+
+.fade-enter-to, .fade-leave-from {
+  transform: scale(1);
+}
+
+
+#modalWrap {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  font-family: 'Diphylleia', serif;
+  transition: all 0.3s;
+}
+
+#modalBody {
+  width: 800px;
+  height: 800px;
+  padding: 30px 30px;
+  margin: 0 auto;
+  border: 1px solid #777;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: center;
+}
+
+#closeBtn {
+  margin-top: -10px;
+  float:right;
+  font-weight: bold;
+  color: #777;
+  font-size:25px;
+  cursor: pointer;
 }
 </style>
